@@ -1,0 +1,16 @@
+# Window settings
+WIDTH = 800
+HEIGHT = 600
+
+# Grid settings
+CELL_SIZE = 20
+COLS = WIDTH // CELL_SIZE
+ROWS = HEIGHT // CELL_SIZE
+
+# Colours
+BACKGROUND_COLOUR = (30, 30, 30)
+GRID_COLOUR = (70, 70, 70)
+CELL_COLOUR = (80, 220, 140)
+
+# Simulation settings
+FPS = 60

@@ -1,10 +1,8 @@
 import pygame
-
-CELL_SIZE = 20
-COLS, ROWS = 40, 30
+from config import CELL_SIZE, COLS, ROWS, BACKGROUND_COLOUR, GRID_COLOUR, CELL_COLOUR
 
 def draw(screen, cells):
-    screen.fill((30, 30, 30))
+    screen.fill(BACKGROUND_COLOUR)
 
     # Draw the grid
     for row in range(ROWS):
@@ -16,7 +14,7 @@ def draw(screen, cells):
                 CELL_SIZE
             )
 
-            pygame.draw.rect(screen, (70, 70, 70), rect, 1)
+            pygame.draw.rect(screen, GRID_COLOUR, rect, 1)
 
     # Populate cells
     for col, row in cells:
@@ -26,4 +24,4 @@ def draw(screen, cells):
             CELL_SIZE -2,
             CELL_SIZE -2
         )
-        pygame.draw.rect(screen, (80, 220, 140), rect)
+        pygame.draw.rect(screen, CELL_COLOUR, rect)

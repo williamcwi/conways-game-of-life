@@ -1,7 +1,6 @@
 import pygame
-
-CELL_SIZE = 20
-COLS, ROWS = 40, 30
+from config import CELL_SIZE, COLS, ROWS
+from game import next_generation
 
 def handle_events(cells):
     for event in pygame.event.get():
@@ -28,4 +27,9 @@ def handle_events(cells):
                 elif event.button == 3:
                     cells.discard(cell)
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_n:
+                new_cells = next_generation(cells)
+                cells.clear()
+                cells.update(new_cells)
     return True
