@@ -2,6 +2,7 @@ import pygame
 from config import WIDTH, HEIGHT, FPS
 from renderer import draw
 from controls import handle_events
+from patterns import PATTERNS, place_pattern, get_start_position
 
 pygame.init()
 
@@ -13,10 +14,19 @@ clock = pygame.time.Clock()
 cells = set()
 running = True
 
-# Initial cells
-cells.add((5, 5))
-cells.add((6, 5))
-cells.add((7, 5))
+# Initial pattern
+selected = PATTERNS["glider"]
+start_col, start_row = get_start_position(
+    selected["cells"],
+    selected["placement"]
+)
+
+place_pattern(
+    cells,
+    selected["cells"],
+    start_col,
+    start_row,
+)
 
 while running:
     running = handle_events(cells)
