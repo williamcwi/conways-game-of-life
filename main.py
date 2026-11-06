@@ -1,5 +1,5 @@
 import pygame
-from config import WIDTH, HEIGHT, FPS, GENERATION_INTERVAL
+from config import WIDTH, HEIGHT, FPS, GENERATION_INTERVAL, INITIAL_PATTERN
 from renderer import draw
 from controls import handle_events
 from game import next_generation
@@ -17,22 +17,22 @@ running = True
 simulating = False
 
 # Initial pattern
-selected = PATTERNS["glider"]
+selected = PATTERNS[INITIAL_PATTERN]
 start_col, start_row = get_start_position(
     selected["cells"],
     selected["placement"]
 )
-
 place_pattern(
     cells,
     selected["cells"],
     start_col,
     start_row,
 )
+initial_cells = cells.copy()
 
 last_generation_time = pygame.time.get_ticks()
 while running:
-    running, simulating = handle_events(cells, simulating)
+    running, simulating = handle_events(cells, simulating, initial_cells)
     now = pygame.time.get_ticks()
 
     if simulating:

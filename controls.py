@@ -1,8 +1,9 @@
 import pygame
 from config import CELL_SIZE, COLS, ROWS
 from game import next_generation
+from patterns import place_pattern
 
-def handle_events(cells, simulating):
+def handle_events(cells, simulating, initial_cells):
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -35,4 +36,9 @@ def handle_events(cells, simulating):
 
             if event.key == pygame.K_SPACE:
                 simulating = not simulating
+
+            if event.key == pygame.K_r:
+                cells.clear()
+                cells.update(initial_cells)
+                simulating = False
     return True, simulating
