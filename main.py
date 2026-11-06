@@ -1,7 +1,8 @@
 import pygame
-from config import WIDTH, HEIGHT, FPS
+from config import WIDTH, HEIGHT, FPS, GENERATION_INTERVAL
 from renderer import draw
 from controls import handle_events
+from game import next_generation
 from patterns import PATTERNS, place_pattern, get_start_position
 
 pygame.init()
@@ -13,6 +14,7 @@ clock = pygame.time.Clock()
 
 cells = set()
 running = True
+simulating = False
 
 # Initial pattern
 selected = PATTERNS["glider"]
@@ -28,8 +30,17 @@ place_pattern(
     start_row,
 )
 
+last_generation_time = pygame.time.get_ticks()
 while running:
-    running = handle_events(cells)
+    running, simulating = handle_events(cells, simulating)
+    now = pygame.time.get_ticks()
+
+    if simulating:
+        if now - last_generation_time >= GENERATION_INTERVAL:
+            cells = next_generation(cells)
+            last_generation_time = now
+    else:
+        last_generation_time = now
 
     draw(screen, cells)
     pygame.display.flip()
