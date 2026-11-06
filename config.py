@@ -15,4 +15,4 @@ CELL_COLOUR = (80, 220, 140)
 # Simulation settings
 FPS = 60
 GENERATION_INTERVAL = 200
-INITIAL_PATTERN = "glider"
+INITIAL_PATTERN = "blank"

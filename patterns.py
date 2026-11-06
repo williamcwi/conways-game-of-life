@@ -1,5 +1,7 @@
 from config import COLS, ROWS
 
+BLANK = set()
+
 GLIDER = {
             (1, 0),
                     (2, 1),
@@ -30,6 +32,10 @@ HWSS = {
 }
 
 PATTERNS = {
+    "blank": {
+        "cells": BLANK,
+        "placement": "top_left",
+    },
     "glider": {
         "cells": GLIDER,
         "placement": "top_left",
@@ -49,6 +55,8 @@ PATTERNS = {
 }
 
 def get_start_position(pattern, placement):
+    if not pattern:
+        return 0, 0
     width = max(col for col, row in pattern) + 1
     height = max(row for col, row in pattern) + 1
     margin = 2
