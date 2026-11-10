@@ -1,13 +1,14 @@
 import pygame
-from config import WIDTH, HEIGHT, FPS, GENERATION_INTERVAL, INITIAL_PATTERN
+from config import WINDOW_WIDTH, HEIGHT, FPS, GENERATION_INTERVAL, INITIAL_PATTERN
 from renderer import draw
 from controls import handle_events
 from game import next_generation
 from patterns import PATTERNS, place_pattern, get_start_position
 
 pygame.init()
+font = pygame.font.Font(None, 22)
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WINDOW_WIDTH, HEIGHT))
 pygame.display.set_caption("Conway's Game of Life")
 
 clock = pygame.time.Clock()
@@ -42,7 +43,7 @@ while running:
     else:
         last_generation_time = now
 
-    draw(screen, cells)
+    draw(screen, cells, font, simulating)
     pygame.display.flip()
 
     clock.tick(FPS)
